@@ -3,7 +3,7 @@ const listEl = document.querySelector('.img-list')
  export function createElements() {
      searchImg().then(data => {
     const markup = imgsTemplate(data)
-    listEl.insertAdjacentHTML('beforeend', markup)
+    listEl.insertAdjacentHTML('beforebegin', markup)
 }) 
  }
 

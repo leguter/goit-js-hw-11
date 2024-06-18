@@ -7,7 +7,10 @@ const btnEl = document.querySelector('.btn-search');
 const formEl = document.querySelector('.form-el')
 formEl.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (inputEl.value.trim() === '') {
+    if (!formEl.elements[0].value.trim()) {
+        iziToast.error({
+            message: 'Info Search input must be filled!',
+        });
         return;
     } else {
         searchImg(inputEl.value.trim());

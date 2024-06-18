@@ -12,10 +12,18 @@ export function searchImg(img) {
     });
     const url = `${baseUrl}${endPoint}?${options}`;
     return fetch(url).then(data => {
-    return data.json()
+        if (!data.ok) {
+        throw new Error(data.status);
+        } else {
+            return data.json();
+    }
         
-    }).then(data => {
-        console.log(data);
+    }).then(value => {
+        if (value.hits || value.length === 0) {
+            throw new Error('Error! Nothing to load');
+        } else {
+
+        }
         // if (data === 0) {
         //     iziToast.show({
         //         message: 'Sorry, there are no images matching your search query. Please, try again!',
@@ -23,6 +31,11 @@ export function searchImg(img) {
         //     });
         // }
     }).catch(error => {
-        console.log(error);
+        iziToast.error({
+    title: 'Sorry,',
+            message: 'there are no images matching your search query. Please try again!',
+    color: 'red',
+});
+
     });
 };
