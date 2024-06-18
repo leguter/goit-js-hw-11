@@ -1,6 +1,7 @@
+import { createElements } from "./render-functions";
 import iziToast from "izitoast";
  import "izitoast/dist/css/iziToast.min.css";
-export function searchImg(img) {
+export function searchImg(value , container) {
     const baseUrl = 'https://pixabay.com';
     const endPoint = '/api/'
     const options = new URLSearchParams({
@@ -8,7 +9,7 @@ export function searchImg(img) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
-        q:`${img}`
+        q:`${value}`,
     });
     const url = `${baseUrl}${endPoint}?${options}`;
     return fetch(url).then(data => {
@@ -22,7 +23,7 @@ export function searchImg(img) {
         if (value.hits || value.length === 0) {
             throw new Error('Error! Nothing to load');
         } else {
-
+        createElements(value, container)
         }
         // if (data === 0) {
         //     iziToast.show({
