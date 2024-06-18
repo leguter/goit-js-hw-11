@@ -16,7 +16,7 @@ export function searchImg(img) {
         
     }).then(data => {
         const arr = [];
-        if (data.json() === arr) {
+        if (data === arr) {
             iziToast.show({
                 message: 'Sorry, there are no images matching your search query. Please, try again!',
                 messageColor: '#fafafb'

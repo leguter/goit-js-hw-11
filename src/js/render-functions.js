@@ -1,8 +1,12 @@
 import { searchImg } from "./pixabay-api"
-searchImg().then(data => {
+const listEl = document.querySelector('.img-list')
+ export function createElements() {
+     searchImg().then(data => {
     const markup = imgsTemplate(data)
-    
+    listEl.insertAdjacentHTML('beforeend', markup)
 }) 
+ }
+
 
 function imgTemplate({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) {
     return `<li>
