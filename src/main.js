@@ -11,6 +11,6 @@ formEl.addEventListener('submit', (e) => {
         return;
     } else {
         searchImg(inputEl.value.trim());
-        createElements(inputEl.value.trim());
+        createElements();
     }
 })

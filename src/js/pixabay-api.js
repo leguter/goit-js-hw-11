@@ -15,13 +15,13 @@ export function searchImg(img) {
     return data.json()
         
     }).then(data => {
-        const arr = [];
-        if (data === arr) {
-            iziToast.show({
-                message: 'Sorry, there are no images matching your search query. Please, try again!',
-                messageColor: '#fafafb'
-            });
-        }
+        console.log(data);
+        // if (data === 0) {
+        //     iziToast.show({
+        //         message: 'Sorry, there are no images matching your search query. Please, try again!',
+        //         messageColor: '#fafafb'
+        //     });
+        // }
     }).catch(error => {
         console.log(error);
     });
