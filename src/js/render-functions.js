@@ -1,4 +1,6 @@
 import { searchImg } from "./pixabay-api"
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 // function imgTemplate({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) {
 //     return `<li>
 //     <img src="${webformatURL}" alt="${tags}" data-source="${largeImageURL}"/>
@@ -11,11 +13,12 @@ import { searchImg } from "./pixabay-api"
 // function imgsTemplate(arr) {
 // return arr.map(imgTemplate).join('');
 // }
-export function createElements(values, container) {
+const listEl = document.querySelector('.img-list')
+export function createElements(values) {
     console.log(values);
        const markup = values.hits
     .map(value => {
-      return `<li>
+      return `<li class="list-el">
                 <a href="${value.largeImageURL}"><img src='${value.webformatURL}' alt='${value.tags}'></a>
                 <div class="content">
                     <div class="item"><h3>Likes</h3><p>${value.likes}</p></div>
@@ -26,6 +29,7 @@ export function createElements(values, container) {
             </li>`;
     })
         .join('');
-    container.textContent = '';
-    container.insertAdjacentHTML('beforeend', markup)
+    listEl.textContent = '';
+    listEl.insertAdjacentHTML('beforeend', markup);
+    let gallery = new SimpleLightbox('.gallery a');
  }
