@@ -9,7 +9,7 @@ export function searchImg(value) {
         q:`${value}`,
     });
     const url = `${baseUrl}${endPoint}?${options}`;
-     fetch(url).then(data => {
+    return fetch(url).then(data => {
         if (!data.ok) {
         throw new Error(data.status);
         } else {

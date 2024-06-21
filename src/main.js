@@ -12,10 +12,8 @@ formEl.addEventListener('submit', (e) => {
         });
         return;
     } else {
-        
         searchImg(value)
             .then(data => {
-                console.log(data);
         if (data.length === 0) {
             throw new Error('Error! Nothing to load');
         } else {
