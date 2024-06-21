@@ -14,14 +14,14 @@ formEl.addEventListener('submit', (e) => {
     } else {
         searchImg(value)
             .then(data => {
-        if (data.length === 0) {
+        if (data.hits.length === 0) {
             throw new Error('Error! Nothing to load');
         } else {
         createElements(data)
         }
-    }).catch(error => {
-        iziToast.error({
-            title: 'Sorry,',
+            }).catch(error => {
+        iziToast.show({
+            title: 'Sorry',
             message: 'there are no images matching your search query. Please try again!',
             color: 'red',
         })
