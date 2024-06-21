@@ -1,21 +1,8 @@
-import { searchImg } from "./pixabay-api"
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-// function imgTemplate({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) {
-//     return `<li>
-//     <img src="${webformatURL}" alt="${tags}" data-source="${largeImageURL}"/>
-//     <span>likes ${likes}</span>
-//     <span>views ${views}</span>
-//     <span>comments ${comments}</span>
-//     <span>downloads ${downloads}</span>
-//     </li>`
-// }
-// function imgsTemplate(arr) {
-// return arr.map(imgTemplate).join('');
-// }
+let gallery = new SimpleLightbox('.gallery a');
 const listEl = document.querySelector('.img-list')
 export function createElements(values) {
-    console.log(values);
        const markup = values.hits
     .map(value => {
       return `<li class="list-el">
@@ -31,5 +18,5 @@ export function createElements(values) {
         .join('');
     listEl.textContent = '';
     listEl.insertAdjacentHTML('beforeend', markup);
-    let gallery = new SimpleLightbox('.gallery a');
+    gallery.refresh();
  }

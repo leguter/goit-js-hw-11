@@ -1,8 +1,7 @@
 import iziToast from "izitoast";
- import "izitoast/dist/css/iziToast.min.css";
+import "izitoast/dist/css/iziToast.min.css";
+ import { createElements } from "./js/render-functions.js";
 import { searchImg } from './js/pixabay-api.js';
-const inputEl = document.querySelector('.input-search');
-const btnEl = document.querySelector('.btn-search');
 const formEl = document.querySelector('.form-el');
 formEl.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -14,6 +13,20 @@ formEl.addEventListener('submit', (e) => {
         return;
     } else {
         
-        searchImg(value);
+        searchImg(value)
+            .then(data => {
+                console.log(data);
+        if (data.length === 0) {
+            throw new Error('Error! Nothing to load');
+        } else {
+        createElements(data)
+        }
+    }).catch(error => {
+        iziToast.error({
+            title: 'Sorry,',
+            message: 'there are no images matching your search query. Please try again!',
+            color: 'red',
+        })
+    }); 
     }
-})
+});

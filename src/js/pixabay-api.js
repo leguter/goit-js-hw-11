@@ -1,7 +1,3 @@
-import { createElements } from "./render-functions";
-import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
- const loaderEl = document.querySelector('.span')
 export function searchImg(value) {
     const baseUrl = 'https://pixabay.com';
     const endPoint = '/api/'
@@ -20,23 +16,5 @@ export function searchImg(value) {
             return data.json();
     }
         
-    }).then(value => {
-        if (value.length === 0) {
-            throw new Error('Error! Nothing to load');
-        } else {
-        createElements(value)
-        }
-        // if (data === 0) {
-        //     iziToast.show({
-        //         message: 'Sorry, there are no images matching your search query. Please, try again!',
-        //         messageColor: '#fafafb'
-        //     });
-        // }
-    }).catch(error => {
-        iziToast.error({
-            title: 'Sorry,',
-            message: 'there are no images matching your search query. Please try again!',
-            color: 'red',
-        })
-    });
+     })
 };
