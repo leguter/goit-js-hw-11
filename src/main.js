@@ -3,10 +3,20 @@ import "izitoast/dist/css/iziToast.min.css";
  import { createElements } from "./js/render-functions.js";
 import { searchImg } from './js/pixabay-api.js';
 const formEl = document.querySelector('.form-el');
+const listEl = document.querySelector('.img-list')
+const loaderEl = document.querySelector('.loader')
+function showLoader() {
+  loaderEl.classList.remove('visually-hidden')
+}
+export function hideLoader() {
+  loaderEl.classList.add('visually-hidden')
+}
 formEl.addEventListener('submit', (e) => {
     e.preventDefault();
     const value = formEl.elements[0].value.trim();
+    showLoader()
     if (!value) {
+        hideLoader();
         iziToast.error({
             message: 'Info Search input must be filled!',
         });
@@ -14,10 +24,12 @@ formEl.addEventListener('submit', (e) => {
     } else {
         searchImg(value)
             .then(data => {
-        if (data.hits.length === 0) {
+                if (data.hits.length === 0) {
+                    hideLoader();
+                    listEl.innerHTML = '';
             throw new Error('Error! Nothing to load');
         } else {
-        createElements(data)
+                    createElements(data)
         }
             }).catch(error => {
         iziToast.show({

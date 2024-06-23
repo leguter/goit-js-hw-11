@@ -1,7 +1,9 @@
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
+const loaderEl = document.querySelector('.loader')
 let gallery = new SimpleLightbox('.gallery a');
 const listEl = document.querySelector('.img-list')
+import { hideLoader } from "../main";
 export function createElements(values) {
        const markup = values.hits
     .map(value => {
@@ -18,5 +20,6 @@ export function createElements(values) {
         .join('');
     listEl.textContent = '';
     listEl.insertAdjacentHTML('beforeend', markup);
+    hideLoader();
     gallery.refresh();
  }
